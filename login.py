@@ -136,15 +136,20 @@ def show_tasks():
         username = session.get('username', None)
 
         if username:
-            query = "SELECT Task, Datetime, username FROM todo WHERE username=%s"
-            mycursor.execute(query, (username,))
+            search_query = request.args.get('search', '').lower()
+            if search_query:
+                query = "SELECT Task, Datetime FROM todo WHERE username=%s AND LOWER(Task) LIKE %s"
+                mycursor.execute(query, (username, f"%{search_query}%"))
+            else:
+                query = "SELECT Task, Datetime FROM todo WHERE username=%s"
+                mycursor.execute(query, (username,))
+
             tasks = mycursor.fetchall()
             return render_template('show tasks.html', tasks=tasks)
         else:
             return render_template('show tasks.html', ss="No username in session.")
     except Exception as e:
         return render_template('show tasks.html', ss="Error while fetching: " + str(e))
-
 @app.route('/remove_task', methods=["POST", "GET"])
 def remove_task():
     if request.method == "POST":
