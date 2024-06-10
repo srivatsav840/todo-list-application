@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Tasks</title>
     <style>
+        /* Your existing styles here */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -42,7 +43,7 @@
             background-color: #f5f5f5;
         }
 
-        .no-tasks {
+        .no-ttasks {
             text-align: center;
             margin: 20px;
             color: #777;
@@ -105,6 +106,10 @@
 </head>
 <body>
     <h1>Tasks</h1>
+    <form method="GET" action="/showtasks">
+        <input type="text" id="search" name="search" placeholder="Search tasks..." oninput="fetchTasks()">
+        <input type="submit" value="Search">
+    </form>
     {% if tasks %}
         <table>
             <thead>
@@ -130,5 +135,13 @@
     <form action="/Home" method="POST">
         <button class="home-button" name="action" value="Home">Home</button>
     </form>
+
+    <script>
+        function fetchTasks() {
+            const searchQuery = document.getElementById('search').value;
+            const form = document.querySelector('form');
+            form.action = `/showtasks?search=${encodeURIComponent(searchQuery)}`;
+        }
+    </script>
 </body>
 </html>
