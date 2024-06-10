@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="datetime-local"], input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color:black;
+        }
+
+        .home-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    color: black;
+    border: 2px solid #fff; /* Add border */
+    padding: 8px 16px; /* Add padding */
+    border-radius: 4px; /* Add border radius */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Add transition effect */
+}
+
+.home-button:hover {
+    background-color: black;
+    color: white;
+    border-color: #000; /* Change border color on hover */
+}
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <form action="/add task" method="POST">
+
+        <label>task</label>
+        <input type="text" name="task" placeholder="Write your task" required>
+        <br>
+        <br>
+        <label>datetime</label>
+        <input type="datetime-local" name="datetime" placeholder="dd/mm/yy" required>
+        <br>
+        <br>
+        <input type="submit" name="action" value="Add Task">
+    </form>
+
+    <form action="/Home" method="POST">
+        <button class="home-button" name="action" value="Home">Home</button>
+    </form>
+    <br>
+    <br>
+    {{re}}
+</div>
+
+</body>
+</html>

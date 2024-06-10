@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Task</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            color: #fff;
+        }
+        .home-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            z-index: 1;
+        }
+        .home-button:hover {
+            background-color: black;
+        }
+        .container {
+            background-color: transparent;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 100%;
+            margin-top: 60px;
+            position: relative;
+            text-align: center;
+        }
+        h1 {
+            color:black;
+            font-family: 'Roboto', sans-serif;
+            margin-bottom: 30px;
+            font-size: 36px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: white;
+            font-size: 18px;
+        }
+        input[type="text"],
+        input[type="datetime-local"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus,
+        input[type="datetime-local"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #1abc9c;
+            color: #ffffff;
+            border: none;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: black;
+        }
+        .response {
+            margin-top: 20px;
+            color: red;
+            font-size: 16px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form action="/Home" method="POST">
+        <button class="home-button" name="action" value="Home">Home</button>
+    </form>
+    <div class="container">
+        <h1>Update Task</h1>
+        <form action="/update_task" method="POST">
+            <label for="oldtask">Old Task</label>
+            <input type="text" id="oldtask" name="oldtask" placeholder="Enter old task" required>
+            <label for="newtask">New Task</label>
+            <input type="text" id="newtask" name="newtask" placeholder="Enter new task" required>
+            <label for="datetime">Date Time</label>
+            <input type="datetime-local" id="datetime" name="datetime" required>
+            <input type="submit" name="action" value="Update">
+            <div class="response">{{re}}</div>
+        </form>
+    </div>
+</body>
+</html>
