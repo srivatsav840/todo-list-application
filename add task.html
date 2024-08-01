@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Task</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -41,52 +41,92 @@
         }
 
         input[type="submit"]:hover {
-            background-color:black;
+            background-color: black;
         }
 
         .home-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: transparent;
-    color: black;
-    border: 2px solid #fff; /* Add border */
-    padding: 8px 16px; /* Add padding */
-    border-radius: 4px; /* Add border radius */
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Add transition effect */
-}
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            color: black;
+            border: 2px solid #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
 
-.home-button:hover {
-    background-color: black;
-    color: white;
-    border-color: #000; /* Change border color on hover */
-}
+        .home-button:hover {
+            background-color: black;
+            color: white;
+            border-color: #000;
+        }
 
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <form action="/add task" method="POST">
-
-        <label>task</label>
+    <form action="/add_task" method="POST">
+        <label>Task</label>
         <input type="text" name="task" placeholder="Write your task" required>
-        <br>
-        <br>
-        <label>datetime</label>
-        <input type="datetime-local" name="datetime" placeholder="dd/mm/yy" required>
-        <br>
-        <br>
+        <br><br>
+        <label>Task Description</label>
+        <input type="text" name="description" placeholder="Describe your task" required>
+        <br><br>
+        <label>Datetime</label>
+        <input type="datetime-local" name="datetime" required>
+        <br><br>
         <input type="submit" name="action" value="Add Task">
     </form>
 
     <form action="/Home" method="POST">
         <button class="home-button" name="action" value="Home">Home</button>
     </form>
-    <br>
-    <br>
-    {{re}}
-</div>
+    <br><br>
 
+    {% if re %}
+        <p>{{ re }}</p>
+    {% endif %}
+
+    {% if tasks %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Description</th>
+                    <th>Datetime</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{ task[0] }}</td>
+                        <td>{{ task[1] }}</td>
+                        <td>{{ task[2] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
 </body>
 </html>
