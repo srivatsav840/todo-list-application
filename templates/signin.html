@@ -1,0 +1,160 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>To-Do List Login</title>
+        <style>
+
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Roboto', sans-serif;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                background: linear-gradient(45deg, #3f87a6, #ebf8e1);
+            }
+
+
+            .container {
+                background: rgba(255, 255, 255, 0.9);
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                animation: fadeIn 1s ease-out;
+            }
+
+
+            h1 {
+                margin-bottom: 20px;
+                color: #4CAF50;
+                font-size: 32px;
+                letter-spacing: 1px;
+            }
+
+
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            input[type="text"],
+            .password-container input[type="password"] {
+                padding: 15px;
+                margin-bottom: 20px;
+                background: #f0f0f0;
+                border: 1px solid #ccc;
+                border-radius: 25px;
+                font-size: 16px;
+                width: 280px;
+                transition: background-color 0.3s ease, border 0.3s ease;
+            }
+
+            input[type="text"]:focus,
+            .password-container input[type="password"]:focus {
+                background-color: #e6e6e6;
+                border: 1px solid #4CAF50;
+            }
+
+            .password-container {
+                position: relative;
+                width: 310px;
+                display: flex;
+                align-items: center;
+            }
+
+            .toggle-password {
+                position: absolute;
+                right: 15px;
+                top:15px;
+                cursor: pointer;
+                font-size: 16px;
+                color: #888;
+            }
+
+            input[type="submit"] {
+                padding: 15px 70px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 25px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+            }
+
+            input[type="submit"]:hover {
+                background-color: green;
+            }
+
+
+            .signup a {
+                color: #2196F3;
+                text-decoration: none;
+                font-size: 16px;
+                transition: color 0.3s ease;
+            }
+
+            .signup a:hover {
+                color: #0b7dda;
+            }
+
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .password-container input[type="password"] {
+                flex: 1;
+            }
+            .response{
+            color:red;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="container">
+        <h1>Welcome to Your To-Do List</h1>
+        <p>Log in to manage your tasks and stay organized!</p>
+        <form action="/signin_submit" method="POST">
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <div class="password-container">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
+            </div>
+            <input type="submit" name="action" value="Login">
+        </form>
+        <div class="signup">
+            <p>Don't have an account? <a href="/signup">Sign Up</a> now!</p>
+        </div>
+        <div class="response">{{re}}</div>
+
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const passwordIcon = document.querySelector('.toggle-password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordIcon.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                passwordIcon.textContent = '👁️';
+            }
+        }
+    </script>
+
+    </body>
+    </html>
